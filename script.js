@@ -8,14 +8,14 @@ const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 //answerObj might be able to be more localized
 psArr = []
-let passwordlen
 let addArr
 let pS
+let password = ""
 
 //function to get the password options selected by the user
 //it then goes into the objects of answerObj
 function generatePassword(){
-   passwordLen = prompt("Pick an amount of characters between from 8-129.");
+   let passwordlen= prompt("Pick an amount of characters between from 8-129.");
   if (passwordlen < 8 || passwordlen > 129){
     alert("Invalid answer.");
    }
@@ -36,26 +36,22 @@ function generatePassword(){
     if(confirm){
       psArr = psArr.concat(uppercase);
     };
+    console.log(typeof passwordlen)
     console.log(psArr)
-    for(i = 0; i< 8; i++){
-
-      let randomValue = psArr[Math.floor(Math.random() * psArr.length)];
-      let addChar = psArr[randomValue]
-      pS = pS + addChar;
-      console.log(pS)
-      //let random = math.floor(math.random() * psArr);
-        //let addNum = psArr[random]
-        //password += addNum
+    for(i = 0; i< passwordlen; i++);{
+      let random = Math.floor(Math.random() * psArr.length);
+        let addNum = psArr[random]
+        password += addNum
+        console.log(password)
         }
-    
-
+        return
      }
     
 
 
 
 
-//need an array to randomize the elements selected
+//need an array to randomize the elements selected 
 //will eventually be the concatonized version of all the arrays the user selected
 
 //function to generate the password from the user input
@@ -69,7 +65,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+ password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
