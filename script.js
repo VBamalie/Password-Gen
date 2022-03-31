@@ -6,47 +6,59 @@ const numberChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-let randomizedArr={
-  specialBool: true,
-  numberBool: true,
-  upperBool: true,
-  lowerBool: true
-}
+//answerObj might be able to be more localized
+psArr = []
+let passwordlen
+let addArr
 
-//function to get the password option selected by the user
-function userSelected(){
-  var answer = window.prompt("Pick an amount of characters between from 8-129.");
-  if (answer < 8 || answer > 129){
+//function to get the password options selected by the user
+//it then goes into the objects of answerObj
+function generatePassword(){
+   passwordLen = window.prompt("Pick an amount of characters between from 8-129.");
+  if (passwordLen < 8 || passwordLen > 129){
     window.alert("Invalid answer.");
     userSelected();
   }
   else 
-    randomizedArr.specialBool = window.confirm("Do you want Special Characters?");
-    randomizedArr.numberBool = window.confirm("Do you want Numbers?");
-    randomizedArr.upperBool = window.confirm("Do you want lowercase letters?");
-    randomizedArr.lowerBool = window.confirm("Do you want Uppercase letters?");
+     addArr = window.confirm("Do you want Special Characters?");
+      if(addArr){
+        psArr = psArr.concat(specialChars)
+      };
+    addArr = window.confirm("Do you want Numbers?");
+      if(addArr){
+        psArr = psArr.concat(numberChars)
+      };
+    addArr = window.confirm("Do you want lowercase letters?");
+    if(addArr){
+      psArr = psArr.concat(lowercase)
+    };
+    addArr = window.confirm("Do you want Uppercase letters?");
+    if(confirm){
+      psArr = psArr.concat(uppercase);
+    };
     return
 }
-userSelected()
-randomSelected(randomizedArr)
-
+console.log(psArr)
+generatePassword()
+console.log(psArr)
 
 
 //need an array to randomize the elements selected
-function randomSelected(object){
-     
-  
+//will eventually be the concatonized version of all the arrays the user selected
+function randomSelected( psLen , randomizedArr ){
+     for (let i = 0; i < psLen; i++); {
+      let random = Math.floor(Math.random() * randomizedArr.length);
+      let newItem = randomizedArr[random]
+      password = password + newItem;
+     }
+  console.log(password)
 }
 
 //function to generate the password from the user input
+//this function needs to contatonate the lists that the user wants to be included together and then bring it back up to the randomSelected function
+//FIGURE OUT WHETHER THE CONCAT ARRAY NEEDS TO BE LOCAL OR GLOBAL
 
-function generatePassword(){
- 
-  if (randomizedArr.specialBool === false && randomizedArr.numberBool === false && randomizedArr.upperBool === false && randomizedArr.lowerBool === false){
-    window.alert("Choose at least one type of Character.");
-    userSelected();
-}
-}
+
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
